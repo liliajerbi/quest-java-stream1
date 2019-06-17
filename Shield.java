@@ -6,7 +6,7 @@ public class Shield {
 
     public static void main(String[] args) {
 
-        List<Hero> heroes = new ArrayList();
+        List<Hero> heroes = new ArrayList<Hero>();
         heroes.add(new Hero("Black Widow", 34, false));
         heroes.add(new Hero("Captain America", 100, false));
         heroes.add(new Hero("Vision", 3, true));
@@ -17,7 +17,9 @@ public class Shield {
         heroes.add(new Hero("Hulk", 49, true));
         heroes.add(new Hero("Doctor Strange", 42, false));
 
-        List<Hero> elders;
+        List<Hero> elders = heroes.stream()
+        .filter(item -> item.getAge() >= 60)
+        .collect(Collectors.toList());
         // TODO 1 : filter heroes in order to found heroes older than 59
 
         System.out.println("\nElders:");
@@ -25,7 +27,9 @@ public class Shield {
             System.out.println(elder.getName());
         }
 
-        List<Hero> intolerants;
+       List<Hero> intolerants = heroes.stream()
+        .filter(item -> item.isGlutenIntolerant())
+        .collect(Collectors.toList());
         // TODO 2 : filter heroes in order to found heroes that are gluten intolerants
 
         System.out.println("\nGluten intolerants:");
